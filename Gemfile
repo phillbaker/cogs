@@ -24,6 +24,8 @@ end
 
 group :development, :test do
   gem 'pry-rails'
+
+  gem 'thin' # Development server
 end
 
 group :test do
