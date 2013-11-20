@@ -5,6 +5,7 @@ gem 'rails', '~>4.0.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'ejs' # For javascript JST templates
 gem 'uglifier', '>= 1.3.0' # Compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0'
 gem 'less-rails'
