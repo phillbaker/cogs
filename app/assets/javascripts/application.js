@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require backbone/cogs
-//= require_tree .
+//= require underscore
+//= require backbone.js
+//= require backbone/coginator
+//= require static
