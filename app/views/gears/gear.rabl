@@ -1,0 +1,3 @@
+attributes :id,
+           :teeth,
+           :radius
