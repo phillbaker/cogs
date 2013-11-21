@@ -5,6 +5,9 @@ class Coginator.Views.GearView extends Backbone.View
   events:
     "change #gear-teeth": "changedTeeth"
     "change #gear-radius": "changedRadius"
+    "click .control .btn": (e) -> e.preventDefault()
+    "click #gear-save": "save"
+    "click #gear-new": "new"
 
   initialize: (options) ->
     @options ||= options
@@ -15,6 +18,8 @@ class Coginator.Views.GearView extends Backbone.View
 
     if @model
       @renderGear(@$el.attr('id'), @model, @options.width, @options.height)
+      @$el.find('#gear-teeth').val(@model.get('teeth'))
+      @$el.find('#gear-radius').val(@model.get('radius'))
 
     else
       @$el.append(@emptyTemplate())
@@ -29,6 +34,20 @@ class Coginator.Views.GearView extends Backbone.View
     newRadius = $(event.target).val()
     @model.set('radius', newRadius)
     @cleanAndRenderGear()
+
+  new: ->
+    Backbone.history.navigate("#", { trigger: true })
+
+  save: ->
+    wasNew = true if @model.isNew()
+    # if the model isn't saved to the server yet, save it and set the hash equal to it's new id
+    # else, we've already saved it and just save it to the server
+    @model.save(@model.toJSON(),
+      success: (model, response, options) ->
+        console.log "/gears/#{model.id}"
+        Backbone.history.navigate("#/gears/#{model.id}", { trigger: true, replace: true })
+    )
+
 
   # Helpers
   cleanAndRenderGear: ->

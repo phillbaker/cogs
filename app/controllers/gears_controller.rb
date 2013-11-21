@@ -28,7 +28,7 @@ class GearsController < ApplicationController
     @gear = Gear.new(gear_params)
 
     if @gear.save
-      redirect_to @gear, notice: 'Gear was successfully created.'
+      respond_with @gear, notice: 'Gear was successfully created.'
     else
       render action: 'new'
     end
@@ -37,7 +37,7 @@ class GearsController < ApplicationController
   # PATCH/PUT /gears/1
   def update
     if @gear.update(gear_params)
-      redirect_to @gear, notice: 'Gear was successfully updated.'
+      respond_with @gear, notice: 'Gear was successfully updated.'
     else
       render action: 'edit'
     end
@@ -46,7 +46,7 @@ class GearsController < ApplicationController
   # DELETE /gears/1
   def destroy
     @gear.destroy
-    redirect_to gears_url, notice: 'Gear was successfully destroyed.'
+    respond_with gears_url, notice: 'Gear was successfully destroyed.'
   end
 
   private
