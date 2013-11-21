@@ -9,7 +9,7 @@ gem 'ejs' # For javascript JST templates
 gem 'uglifier', '>= 1.3.0' # Compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.0.0'
 gem 'less-rails'
-gem 'less-rails-bootstrap'
+gem 'twitter-bootstrap-rails'
 gem 'therubyracer', :platforms => :ruby # See JS runtimes
 gem 'jquery-rails'
 
@@ -24,13 +24,13 @@ end
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'factory_girl_rails' # Factories instead of mocks
 
   gem 'thin' # Development server
 end
 
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails' # Factories instead of mocks
   gem 'faker' # Fake data
   gem 'jasmine' # JS tests
 end
