@@ -1,13 +1,9 @@
 class Coginator.Models.Gear extends Backbone.Model
-  defaults: {}
-    # teethCount: 5
-    # toothSlices: 5
-    # depth: 0.1
-    # tolerance: 0.001
+  defaults:
+    teeth: 32
+    radius: 80
 
   initialize: () ->
-    # @teethLoc = []
-    # @cpitch = self.perimeter() / teethCount
 
   # Circular gear based on https://gist.github.com/mbostock/1353700#file-index-html-L113
   toPath: (data) ->

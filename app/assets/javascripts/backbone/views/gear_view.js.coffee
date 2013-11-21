@@ -1,36 +1,61 @@
 class Coginator.Views.GearView extends Backbone.View
-  template: JST["backbone/templates/gear_view"]
+  controlTemplate: JST["backbone/templates/gear_control"]
+  emptyTemplate: JST["backbone/templates/empty_gear_view"]
+
+  events:
+    "change #gear-teeth": "changedTeeth"
+    "change #gear-radius": "changedRadius"
 
   initialize: (options) ->
     @options ||= options
     @render()
 
   render: ->
+    @$el.html(@controlTemplate()) # Probably don't need to re-render this each time
+
     if @model
-      @$el.empty()
-      x = Math.sin(2 * Math.PI / 3)
-      y = Math.cos(2 * Math.PI / 3)
+      @renderGear(@$el.attr('id'), @model, @options.width, @options.height)
 
-      svg = d3.select("##{@$el.attr('id')}")
-        .append("svg")
-          .attr("width", @options.width)
-          .attr("height", @options.height)
-        .append("g")
-          .attr("transform", "translate(" +  @options.width / 2 + "," +  @options.height / 2 + ")scale(.55)")
-        .append("g")
-
-      frame = svg.append("g")
-        .datum({radius: Infinity})
-
-      frame.append("g")
-        .attr("class", "planet")
-        .attr("transform", "translate(" + @model.get('radius') * 3 * x + "," + -@model.get('radius') * 3 * y + ")")
-        .datum(
-          teeth: @model.get('teeth')
-          radius: -@model.get('radius') * 2
-        )
-      .append("path")
-        .attr("d", @model.toPath)
     else
-      @$el.html(@template())
+      @$el.append(@emptyTemplate())
+
+  changedTeeth: (event) ->
+    newTeeth = $(event.target).val()
+    @model.set('teeth', newTeeth)
+
+    @cleanAndRenderGear()
+
+  changedRadius: (event) ->
+    newRadius = $(event.target).val()
+    @model.set('radius', newRadius)
+    @cleanAndRenderGear()
+
+  # Helpers
+  cleanAndRenderGear: ->
+    @$el.find('svg').remove()
+    @renderGear(@$el.attr('id'), @model, @options.width, @options.height)
+
+  renderGear: (elId, gear, width, height) ->
+    x = Math.sin(2 * Math.PI / 3)
+    y = Math.cos(2 * Math.PI / 3)
+
+    svg = d3.select("##{elId}")
+      .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+      .append("g")
+        .attr("transform", "translate(" +  width / 2 + "," +  height / 2 + ")scale(.55)")
+      .append("g")
+
+    frame = svg.append("g")
+      .datum({radius: Infinity})
+
+    frame.append("g")
+      .attr("class", "gear")
+      .datum(
+        teeth: gear.get('teeth')
+        radius: -gear.get('radius') * 2
+      )
+    .append("path")
+      .attr("d", gear.toPath)
 

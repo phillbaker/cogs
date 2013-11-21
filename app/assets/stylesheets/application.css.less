@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and LESS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap_and_overrides
+ *= require_tree .
+ *= require_self
+ */
+
+span.large, p.large, li.large {
+  font-size: 150%;
+}
+
+span.small, p.small, li.small {
+  font-size: 75%;
+}
+
+.form-actions .btn {
+  margin-right: 10px;
+}
+
+// Fix for row.well over-row width.
+div.row-well {
+  margin-left: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+
+.navbar {
+  position: relative;
+}
+
+.navbar .brand {
+  display: inline-block;
+  position: relative;
+}
+
+.navbar-inner {
+  border-radius: 0 0 4px 4px;
+  border-top: 0;
+}
+
+.brand-decoration {
+  @rotation: 0deg;
+  transform: rotate(@rotation);
+  -ms-transform: rotate(@rotation); // IE 9
+  -moz-transform: rotate(@rotation); // Firefox
+  -webkit-transform: rotate(@rotation); // Safari and Chrome
+  -o-transform: rotate(@rotation); // Opera
+  position: absolute;
+  left: 55px;
+  top: 25px;
+}
+
+/*
+*
+* Sticky header + footer with fixed hieghts.
+*  http://getbootstrap.com/2.3.2/examples/sticky-footer-navbar.html
+*
+*/
+
+@footerElementHeight: 60px;
+@footerVerticalPadding: 20px;
+@footerHeight: @footerElementHeight + @footerVerticalPadding;
+
+html, body {
+  height: 100%; // The html and body elements cannot have any padding or margin.
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -@footerHeight; // Negative indent footer by it's height
+}
+
+#push,
+footer {
+  height: @footerHeight; // Fixed height of the footer here
+}
+footer {
+  background-color: #f5f5f5;
+}
+
+// Lastly, apply responsive CSS fixes as necessary
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+#wrap > .container {
+  padding-top: 2em;
+}
+
+footer .container {
+  padding: 20px 0;
+}
