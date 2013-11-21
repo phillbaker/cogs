@@ -8,9 +8,19 @@ class Coginator.Routers.GearsRouter extends Backbone.Router
     Backbone.history.start()
 
   showGear: (gearId) ->
-    gear = Coginator.Models.Gear.fetch(id: gearId) if gearId
-
-    view = new Coginator.Views.CogOutput(
-      el: $('#cog-output')
-      model: gear
-    )
+    if gearId
+      gear = new Coginator.Models.Gear(id: gearId)
+      collection = new Coginator.Collections.Gears([gear])
+      gear.fetch(
+        success: (model) ->
+          view = new Coginator.Views.GearView(
+            el: $('#cog-output')
+            model: model
+            width: 960
+            height: 500
+          )
+      )
+    else
+      view = new Coginator.Views.GearView(
+        el: $('#cog-output')
+      )

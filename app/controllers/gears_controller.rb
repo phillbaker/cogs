@@ -12,11 +12,13 @@ class GearsController < ApplicationController
   def show
   end
 
+  # TODO remove
   # GET /gears/new
   def new
     @gear = Gear.new
   end
 
+  # TODO remove
   # GET /gears/1/edit
   def edit
   end

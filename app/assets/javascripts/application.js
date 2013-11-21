@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone.js
+//= require d3.v3
 //= require backbone/coginator
 //= require static
