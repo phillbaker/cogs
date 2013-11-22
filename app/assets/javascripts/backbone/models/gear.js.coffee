@@ -2,6 +2,7 @@ class Coginator.Models.Gear extends Backbone.Model
   defaults:
     teeth: 32
     radius: 80
+    #TODO pitch, angle, inner-radius (axel radius) vs. outer radius
 
   initialize: () ->
 
@@ -29,7 +30,6 @@ class Coginator.Models.Gear extends Backbone.Model
 
     path.push("M0,", -r3, "A", r3, ",", r3, " 0 0,0 0,", r3, "A", r3, ",", r3, " 0 0,0 0,", -r3, "Z")
     path.join("")
-
 
 class Coginator.Collections.Gears extends Backbone.Collection
   model: Coginator.Models.Gear
