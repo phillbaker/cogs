@@ -24,13 +24,14 @@ end
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'rspec-rails' # Specs in both development and test for generators
   gem 'factory_girl_rails' # Factories instead of mocks
 
   gem 'thin' # Development server
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'shoulda-matchers' # Rails specific matchers
   gem 'faker' # Fake data
   gem 'jasmine' # JS tests
 end

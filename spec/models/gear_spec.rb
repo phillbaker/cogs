@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Gear do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_numericality_of :teeth }
+  it { should validate_numericality_of :radius }
 end

@@ -1,5 +1,5 @@
 class GearsController < ApplicationController
-  before_action :set_gear, only: [:show, :edit, :update, :destroy]
+  before_action :set_gear, only: [:show, :update, :destroy]
   respond_to :json
 
   # GET /gears
@@ -12,41 +12,30 @@ class GearsController < ApplicationController
   def show
   end
 
-  # TODO remove
-  # GET /gears/new
-  def new
-    @gear = Gear.new
-  end
-
-  # TODO remove
-  # GET /gears/1/edit
-  def edit
-  end
-
   # POST /gears
   def create
     @gear = Gear.new(gear_params)
 
     if @gear.save
-      respond_with @gear, notice: 'Gear was successfully created.'
+      render :show, notice: 'Gear was successfully created.'
     else
-      render action: 'new'
+      render :json => { :errors => @gear.errors.full_messages }, :status => :unprocessible_entity
     end
   end
 
   # PATCH/PUT /gears/1
   def update
     if @gear.update(gear_params)
-      respond_with @gear, notice: 'Gear was successfully updated.'
+      render :show, notice: 'Gear was successfully updated.'
     else
-      render action: 'edit'
+      render :json => { :errors => @gear.errors.full_messages }, :status => :unprocessible_entity
     end
   end
 
   # DELETE /gears/1
   def destroy
     @gear.destroy
-    respond_with gears_url, notice: 'Gear was successfully destroyed.'
+    render :json => {}, :status => :no_content
   end
 
   private
