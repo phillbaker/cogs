@@ -3,25 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-
-
-
-# http://stackoverflow.com/a/14623960/2284646
-require 'active_support/concern'
-
-module DefaultParams
-  extend ActiveSupport::Concern
-
-  def process_with_default_params(action, method, parameters={}, session={}, flash=nil)
-    process_without_default_params(action, method, default_params.merge(parameters || {}), session, flash)
-  end
-
-  included do
-    let(:default_params) { {} }
-    alias_method_chain :process, :default_params
-  end
-end
-
+require 'rspec_default_params'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -59,5 +41,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
   config.include FactoryGirl::Syntax::Methods
-  config.include(DefaultParams, :type => :controller)
+  config.include(RSpec::DefaultParams, :type => :controller)
 end

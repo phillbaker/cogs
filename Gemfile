@@ -31,6 +31,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rspec-default-params'
   gem 'shoulda-matchers' # Rails specific matchers
   gem 'faker' # Fake data
   gem 'jasmine' # JS tests
