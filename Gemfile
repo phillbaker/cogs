@@ -34,5 +34,5 @@ group :test do
   gem 'rspec-default-params'
   gem 'shoulda-matchers' # Rails specific matchers
   gem 'faker' # Fake data
-  gem 'jasmine' # JS tests
+  gem 'jasmine-rails' # JS tests
 end
