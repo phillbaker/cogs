@@ -35,4 +35,5 @@ group :test do
   gem 'shoulda-matchers' # Rails specific matchers
   gem 'faker' # Fake data
   gem 'jasmine-rails' # JS tests
+  gem 'jasmine-jquery-rails'
 end
