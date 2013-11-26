@@ -25,6 +25,8 @@ class Coginator.Views.GearView extends Backbone.View
     else
       @$el.append(@emptyTemplate())
 
+    this
+
   changedTeeth: (event) ->
     newTeeth = $(event.target).val()
     @model.set('teeth', newTeeth)

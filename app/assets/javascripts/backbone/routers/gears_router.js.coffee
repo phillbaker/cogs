@@ -18,6 +18,9 @@ class Coginator.Routers.GearsRouter extends Backbone.Router
     gear.fetch(
       success: (model) =>
         @showGear(model)
+      error: (model, response, options) =>
+        if response.status == 404
+          @showGear()
     )
 
   #
